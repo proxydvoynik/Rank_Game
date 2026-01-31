@@ -9,3 +9,6 @@ global.topic_order = [
     [2,0,3,1]
 ];
 show_debug_message("Controller started");
+global.timer_running = false;
+global.final_time_taken = 0;
+global.final_time_bonus = 0;
