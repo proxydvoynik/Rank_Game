@@ -18,11 +18,13 @@
     {"name":"obj_controller","order":2,"path":"objects/obj_controller/obj_controller.yy",},
     {"name":"obj_element","order":5,"path":"objects/obj_element/obj_element.yy",},
     {"name":"obj_results_text","order":6,"path":"objects/obj_results_text/obj_results_text.yy",},
+    {"name":"obj_slot","order":8,"path":"objects/obj_slot/obj_slot.yy",},
     {"name":"obj_timer_ui","order":7,"path":"objects/obj_timer_ui/obj_timer_ui.yy",},
     {"name":"obj_topic_button","order":4,"path":"objects/obj_topic_button/obj_topic_button.yy",},
     {"name":"rm_game","order":1,"path":"rooms/rm_game/rm_game.yy",},
     {"name":"rm_how_to_play","order":2,"path":"rooms/rm_how_to_play/rm_how_to_play.yy",},
     {"name":"rm_results","order":4,"path":"rooms/rm_results/rm_results.yy",},
     {"name":"rm_topic_select","order":3,"path":"rooms/rm_topic_select/rm_topic_select.yy",},
+    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
   ],
 }

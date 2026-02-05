@@ -19,36 +19,54 @@ if (point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_b
     }
     
     if (action == "submit") {
+		// check all slots are filled
+var all_filled = true;
 
-    var els = [noone, noone, noone, noone];
-
-    // collect elements by vertical slot
-    with (obj_element) {
-        var pos = round((y - 100) / 70);
-        if (pos >= 0 && pos < 4) {
-            els[pos] = id;
-        }
+with (obj_slot) {
+    if (held_element == noone) {
+        all_filled = false;
     }
+}
+
+if (!all_filled) {
+    show_debug_message("Submit blocked: not all slots filled");
+    exit;
+}
+
 
     var my_score = 0;
-    var correct_order = global.topic_order[global.current_topic_index];
+var correct_order = global.topic_order[global.current_topic_index];
 
-    for (var i = 0; i < 4; i++) {
-        if (els[i] != noone && els[i].correct_index == correct_order[i]) {
+// loop through all slots
+with (obj_slot) {
+
+    if (held_element != noone) {
+
+        var expected = correct_order[slot_index];
+
+        if (held_element.correct_index == expected) {
             my_score++;
-            show_debug_message("Pos " + string(i) + " correct");
+            show_debug_message("Slot " + string(slot_index) + " correct");
+        } else {
+            show_debug_message(
+                "Slot " + string(slot_index) +
+                " wrong (got " + string(held_element.correct_index) +
+                ", expected " + string(expected) + ")"
+            );
         }
     }
+}
+
 
     global.total_score += my_score * 25;
     show_debug_message("Score: " + string(my_score) + "/4");
 
-    // 🔴 MARK CURRENT TOPIC AS COMPLETED
+    // mark current topic as completed
     if (global.current_topic_index != -1) {
         global.topics_done[global.current_topic_index] = true;
     }
 
-    // 🔴 CHECK IF ALL TOPICS ARE DONE
+    // check if all topics are done
     var all_done = true;
     for (var i = 0; i < array_length(global.topics_done); i++) {
         if (!global.topics_done[i]) {
@@ -57,21 +75,22 @@ if (point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_b
         }
     }
 
-    // 🔴 DECIDE WHERE TO GO
+    // decide where to go
     if (all_done) {
-		global.timer_running = false;
+        global.timer_running = false;
 
-global.final_time_taken = floor(global.timer);
-global.final_time_bonus = max(
-    0,
-    floor((global.time_limit - global.timer) * 0.2)
-);
+        global.final_time_taken = floor(global.timer);
+        global.final_time_bonus = max(
+            0,
+            floor((global.time_limit - global.timer) * 0.2)
+        );
 
         room_goto(rm_results);
     } else {
         room_goto(rm_topic_select);
     }
 }
+
 
 
 
