@@ -1,22 +1,18 @@
 {
   "FolderOrderSettings":[
+    {"name":"Audio","order":16,"path":"folders/Audio.yy",},
     {"name":"Configurations","order":15,"path":"folders/Configurations.yy",},
     {"name":"Extensions","order":13,"path":"folders/Extensions.yy",},
     {"name":"Fonts","order":8,"path":"folders/Fonts.yy",},
-    {"name":"Notes","order":12,"path":"folders/Notes.yy",},
     {"name":"Objects","order":10,"path":"folders/Objects.yy",},
-    {"name":"Options","order":14,"path":"folders/Options.yy",},
-    {"name":"Paths","order":5,"path":"folders/Paths.yy",},
     {"name":"Rooms","order":11,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":6,"path":"folders/Scripts.yy",},
-    {"name":"Shaders","order":7,"path":"folders/Shaders.yy",},
-    {"name":"Tile Sets","order":3,"path":"folders/Tile Sets.yy",},
-    {"name":"Timelines","order":9,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"obj_button","order":3,"path":"objects/obj_button/obj_button.yy",},
     {"name":"obj_controller","order":2,"path":"objects/obj_controller/obj_controller.yy",},
     {"name":"obj_element","order":5,"path":"objects/obj_element/obj_element.yy",},
+    {"name":"obj_mute","order":9,"path":"objects/obj_mute/obj_mute.yy",},
     {"name":"obj_results_text","order":6,"path":"objects/obj_results_text/obj_results_text.yy",},
     {"name":"obj_slot","order":8,"path":"objects/obj_slot/obj_slot.yy",},
     {"name":"obj_timer_ui","order":7,"path":"objects/obj_timer_ui/obj_timer_ui.yy",},
@@ -25,6 +21,8 @@
     {"name":"rm_how_to_play","order":2,"path":"rooms/rm_how_to_play/rm_how_to_play.yy",},
     {"name":"rm_results","order":4,"path":"rooms/rm_results/rm_results.yy",},
     {"name":"rm_topic_select","order":3,"path":"rooms/rm_topic_select/rm_topic_select.yy",},
+    {"name":"snd_bgm","order":1,"path":"sounds/snd_bgm/snd_bgm.yy",},
     {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
+    {"name":"Sprite3","order":2,"path":"sprites/Sprite3/Sprite3.yy",},
   ],
 }

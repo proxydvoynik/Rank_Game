@@ -1,8 +1,9 @@
 show_debug_message("BUTTON CLICKED: " + string(action));
 if (point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_bottom)) {
     
-    if (action == "play") {
         if (action == "play") {
+			scr_play_click();
+
     global.timer = 0;
     global.timer_running = true;
     room_goto(rm_topic_select);
@@ -11,14 +12,19 @@ if (point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_b
     }
     
     if (action == "how_to_play") {
+		scr_play_click();
+
         room_goto(rm_how_to_play);
     }
     
     if (action == "back_start") {
+		scr_play_click();
+
         room_goto(rm_start);
     }
     
     if (action == "submit") {
+
 		// check all slots are filled
 var all_filled = true;
 
@@ -31,6 +37,9 @@ with (obj_slot) {
 if (!all_filled) {
     show_debug_message("Submit blocked: not all slots filled");
     exit;
+}
+else{
+	scr_play_click();
 }
 
 
@@ -95,6 +104,8 @@ with (obj_slot) {
 
 
 if (action == "play_again") {
+	scr_play_click();
+
 
     // reset timer
     global.timer = 0;
@@ -113,4 +124,3 @@ if (action == "play_again") {
     room_goto(rm_start);
 }
 
-}
