@@ -1,81 +1,127 @@
 show_debug_message("BUTTON CLICKED: " + string(action));
-if (point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_bottom)) {
-    
-        if (action == "play") {
-			scr_play_click();
+
+// block input during transition
+if (instance_exists(obj_transition) && obj_transition.state != "idle") exit;
+
+// check click inside button
+if (!point_in_rectangle(mouse_x, mouse_y, bbox_left, bbox_top, bbox_right, bbox_bottom)) exit;
+
+// helper: start transition safely
+function go_to_room(_room) {
+    if (!instance_exists(obj_transition)) {
+        instance_create_layer(0, 0, "Instances", obj_transition);
+    }
+    with (obj_transition) {
+        target_room = _room;
+        state = "fade_out";
+    }
+}
+
+// --------------------------------------------------
+// PLAY
+// --------------------------------------------------
+if (action == "play") {
+    scr_play_click();
 
     global.timer = 0;
     global.timer_running = true;
-    room_goto(rm_topic_select);
-}
 
-    }
-    
-    if (action == "how_to_play") {
-		scr_play_click();
-
-        room_goto(rm_how_to_play);
-    }
-    
-    if (action == "back_start") {
-		scr_play_click();
-
-        room_goto(rm_start);
-    }
-    
-    if (action == "submit") {
-
-		// check all slots are filled
-var all_filled = true;
-
-with (obj_slot) {
-    if (held_element == noone) {
-        all_filled = false;
-    }
-}
-
-if (!all_filled) {
-    show_debug_message("Submit blocked: not all slots filled");
+    go_to_room(rm_topic_select);
     exit;
 }
-else{
-	scr_play_click();
+
+// --------------------------------------------------
+// HOW TO PLAY
+// --------------------------------------------------
+if (action == "how_to_play") {
+    scr_play_click();
+    go_to_room(rm_how_to_play);
+    exit;
 }
 
+// --------------------------------------------------
+// BACK TO START
+// --------------------------------------------------
+if (action == "back_start") {
+    scr_play_click();
+    go_to_room(rm_start);
+    exit;
+}
 
-    var my_score = 0;
-var correct_order = global.topic_order[global.current_topic_index];
+// --------------------------------------------------
+// SUBMIT
+// --------------------------------------------------
+if (action == "submit") {
 
-// loop through all slots
-with (obj_slot) {
+    // ---------------------------------
+    // CHECK ALL SLOTS FILLED
+    // ---------------------------------
+    var all_filled = true;
 
-    if (held_element != noone) {
-
-        var expected = correct_order[slot_index];
-
-        if (held_element.correct_index == expected) {
-            my_score++;
-            show_debug_message("Slot " + string(slot_index) + " correct");
-        } else {
-            show_debug_message(
-                "Slot " + string(slot_index) +
-                " wrong (got " + string(held_element.correct_index) +
-                ", expected " + string(expected) + ")"
-            );
+    with (obj_slot) {
+        if (held_element == noone) {
+            all_filled = false;
         }
     }
-}
 
-
-    global.total_score += my_score * 25;
-    show_debug_message("Score: " + string(my_score) + "/4");
-
-    // mark current topic as completed
-    if (global.current_topic_index != -1) {
-        global.topics_done[global.current_topic_index] = true;
+    if (!all_filled) {
+        show_debug_message("Submit blocked: not all slots filled");
+        exit;
     }
 
-    // check if all topics are done
+    scr_play_click();
+
+    // ---------------------------------
+    // DEBUG + SCORE CALCULATION
+    // ---------------------------------
+    var my_score = 0;
+    var topic = global.current_topic_index;
+    var correct_order = global.topic_order[topic];
+
+    show_debug_message("===== SUBMIT DEBUG START =====");
+    show_debug_message("Topic index: " + string(topic));
+    show_debug_message("Correct order: " + string(correct_order));
+
+    with (obj_slot) {
+
+        if (held_element == noone) {
+            show_debug_message("Slot " + string(slot_index) + " EMPTY");
+            exit;
+        }
+
+        var expected = correct_order[slot_index];
+        var got = held_element.correct_index;
+
+        show_debug_message(
+            "Slot " + string(slot_index) +
+            " | expects: " + string(expected) +
+            " | got: " + string(got) +
+            " | label: " + held_element.label
+        );
+
+        if (got == expected) {
+            my_score++;
+            show_debug_message("→ CORRECT");
+        } else {
+            show_debug_message("→ WRONG");
+        }
+    }
+
+    show_debug_message("FINAL SCORE: " + string(my_score) + "/4");
+    show_debug_message("===== SUBMIT DEBUG END =====");
+
+    global.total_score += my_score * 25;
+
+    // ---------------------------------
+    // MARK TOPIC DONE
+    // ---------------------------------
+    if (topic != -1) {
+        global.topics_done[topic] = true;
+    }
+
+    // ---------------------------------
+    // CHECK IF ALL TOPICS DONE
+    // ---------------------------------
     var all_done = true;
     for (var i = 0; i < array_length(global.topics_done); i++) {
         if (!global.topics_done[i]) {
@@ -84,7 +130,9 @@ with (obj_slot) {
         }
     }
 
-    // decide where to go
+    // ---------------------------------
+    // GO TO NEXT ROOM
+    // ---------------------------------
     if (all_done) {
         global.timer_running = false;
 
@@ -98,29 +146,26 @@ with (obj_slot) {
     } else {
         room_goto(rm_topic_select);
     }
+
+    exit;
 }
 
 
-
-
+// --------------------------------------------------
+// PLAY AGAIN
+// --------------------------------------------------
 if (action == "play_again") {
-	scr_play_click();
+    scr_play_click();
 
-
-    // reset timer
     global.timer = 0;
-
-    // reset score
     global.total_score = 0;
 
-    // reset topic completion
     for (var i = 0; i < array_length(global.topics_done); i++) {
         global.topics_done[i] = false;
     }
 
-    // reset topic selection
     global.current_topic_index = -1;
 
-    room_goto(rm_start);
+    go_to_room(rm_start);
+    exit;
 }
-

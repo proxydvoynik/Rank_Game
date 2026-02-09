@@ -32,9 +32,5 @@ if (hovered) {
 // draw border only
 draw_roundrect(left, top, right, bottom, true);
 
-// optional label
-draw_set_color(c_gray);
-draw_text((left + right) / 2, top - 22, "Rank " + string(slot_index + 1));
-
 // reset draw state
 draw_set_color(c_white);

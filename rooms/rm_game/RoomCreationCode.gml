@@ -1,35 +1,28 @@
+// -------------------------------------------------
+// SAFETY CHECK
+// -------------------------------------------------
 if (global.current_topic_index == -1) {
-    room_goto(rm_start); 
+    room_goto(rm_start);
     exit;
 }
 
-var topic_idx = global.current_topic_index;
-var order = global.topic_order[topic_idx];
+var topic = global.current_topic_index;
 
-var el0 = instance_find(obj_element, 0);
-var el1 = instance_find(obj_element, 1);
-var el2 = instance_find(obj_element, 2);
-var el3 = instance_find(obj_element, 3);
-
-el0.correct_index = order[0];
-el1.correct_index = order[1];
-el2.correct_index = order[2];
-el3.correct_index = order[3];
-
-show_debug_message("Topic " + string(topic_idx) + " loaded");
-
-
-var start_positions = [100, 170, 240, 310];
-start_positions = [start_positions[3], start_positions[0], start_positions[2], start_positions[1]]; // shuffle
-
-var els = [instance_find(obj_element,0), instance_find(obj_element,1), instance_find(obj_element,2), instance_find(obj_element,3)];
-for (var i=0; i<4; i++) {
-    els[i].x = 400;
-    els[i].y = start_positions[i];
+// -------------------------------------------------
+// CLEAN UP OLD ELEMENTS
+// -------------------------------------------------
+with (obj_element) {
+    instance_destroy();
 }
-show_debug_message("Elements shuffled");
 
-// find submit button
+// -------------------------------------------------
+// GET TOPIC DATA
+// -------------------------------------------------
+var names = global.topic_elements[topic];
+
+// -------------------------------------------------
+// FIND SUBMIT BUTTON
+// -------------------------------------------------
 var submit = noone;
 with (obj_button) {
     if (action == "submit") {
@@ -42,44 +35,50 @@ if (submit == noone) {
     exit;
 }
 
-// shuffle order (keep your shuffle)
-var indices = [0, 1, 2, 3];
-indices = [indices[3], indices[0], indices[2], indices[1]]; // your shuffle
+// -------------------------------------------------
+// CREATE ELEMENTS
+// -------------------------------------------------
+var elements = [];
 
-var els = [
-    instance_find(obj_element, indices[0]),
-    instance_find(obj_element, indices[1]),
-    instance_find(obj_element, indices[2]),
-    instance_find(obj_element, indices[3])
-];
-
-// element size (assumes all elements same sprite)
-var el = instance_find(obj_element, 0);
-var el_width = sprite_get_bbox_right(el.sprite_index)
-             - sprite_get_bbox_left(el.sprite_index);
-
-// spacing = element width + padding
-var padding = 24;
-var spacing = el_width + padding;
-
-// total width of 4 elements
-var total_width = spacing * 3;
-
-// starting x so row is centered above submit
-var start_x = submit.x - total_width / 2;
-
-var y_pos = submit.y - 110;
-
-// position elements horizontally
 for (var i = 0; i < 4; i++) {
-    els[i].x = start_x + spacing * i;
-    els[i].y = y_pos;
+    var el = instance_create_layer(0, 0, "Instances", obj_element);
 
-    // save staging position
-    els[i].start_x = els[i].x;
-    els[i].start_y = els[i].y;
+    el.label = names[i];     // topic-specific text
+    el.correct_index = i;    // identity (used in scoring)
+    el.current_slot = noone;
 
-    els[i].current_slot = noone;
+    array_push(elements, el);
 }
 
-show_debug_message("Elements positioned horizontally above submit");
+// -------------------------------------------------
+// SHUFFLE VISUAL ORDER
+// -------------------------------------------------
+array_shuffle(elements);
+
+// -------------------------------------------------
+// CALCULATE HORIZONTAL LAYOUT
+// -------------------------------------------------
+var el_width = elements[0].bbox_right - elements[0].bbox_left;
+
+var padding = 24;
+var spacing = el_width + padding;
+var total_width = spacing * 3;
+
+// center row above submit button
+var start_x = submit.x - total_width / 2;
+var y_pos   = submit.y - 110;
+
+// -------------------------------------------------
+// POSITION ELEMENTS
+// -------------------------------------------------
+for (var i = 0; i < 4; i++) {
+    var el = elements[i];
+
+    el.x = start_x + spacing * i;
+    el.y = y_pos;
+
+    el.start_x = el.x;
+    el.start_y = el.y;
+}
+
+show_debug_message("Topic " + string(topic) + " elements created and positioned");
