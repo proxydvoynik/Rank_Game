@@ -1,9 +1,5 @@
 draw_self();
 
-// icon-only buttons (no text)
-if (action == "back_start") {
-    exit;
-}
 
 // --------------------
 // TEXT BUTTONS

@@ -1,3 +1,4 @@
+
 show_debug_message("BUTTON CLICKED: " + string(action));
 
 // block input during transition
