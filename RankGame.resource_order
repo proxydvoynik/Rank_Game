@@ -9,6 +9,7 @@
     {"name":"Scripts","order":6,"path":"folders/Scripts.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"obj_bg_home","order":12,"path":"objects/obj_bg_home/obj_bg_home.yy",},
     {"name":"obj_button","order":3,"path":"objects/obj_button/obj_button.yy",},
     {"name":"obj_controller","order":2,"path":"objects/obj_controller/obj_controller.yy",},
     {"name":"obj_element","order":5,"path":"objects/obj_element/obj_element.yy",},
@@ -24,8 +25,10 @@
     {"name":"rm_results","order":4,"path":"rooms/rm_results/rm_results.yy",},
     {"name":"rm_topic_select","order":3,"path":"rooms/rm_topic_select/rm_topic_select.yy",},
     {"name":"snd_bgm","order":1,"path":"sounds/snd_bgm/snd_bgm.yy",},
+    {"name":"spr_bg_home","order":6,"path":"sprites/spr_bg_home/spr_bg_home.yy",},
     {"name":"spr_button_primary","order":3,"path":"sprites/spr_button_primary/spr_button_primary.yy",},
     {"name":"spr_button_secondary","order":5,"path":"sprites/spr_button_secondary/spr_button_secondary.yy",},
+    {"name":"spr_game_bg","order":7,"path":"sprites/spr_game_bg/spr_game_bg.yy",},
     {"name":"spr_sound_off","order":4,"path":"sprites/spr_sound_off/spr_sound_off.yy",},
     {"name":"spr_sound_on","order":2,"path":"sprites/spr_sound_on/spr_sound_on.yy",},
     {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},

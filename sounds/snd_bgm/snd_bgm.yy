@@ -10,7 +10,7 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":99.31034,
+  "duration":51.461224,
   "exportDir":"",
   "name":"snd_bgm",
   "parent":{
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_bgm.wav",
+  "soundFile":"snd_bgm.mp3",
   "volume":1.0,
 }

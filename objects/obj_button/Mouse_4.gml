@@ -22,6 +22,10 @@ function go_to_room(_room) {
 // --------------------------------------------------
 if (action == "play") {
     scr_play_click();
+	
+	if(!audio_is_playing(snd_bgm)){
+		audio_play_sound(snd_bgm,0,true);
+	}
 
     global.timer = 0;
     global.timer_running = true;
@@ -142,9 +146,9 @@ if (action == "submit") {
             floor((global.time_limit - global.timer) * 0.2)
         );
 
-        room_goto(rm_results);
+        go_to_room(rm_results);
     } else {
-        room_goto(rm_topic_select);
+        go_to_room(rm_topic_select);
     }
 
     exit;

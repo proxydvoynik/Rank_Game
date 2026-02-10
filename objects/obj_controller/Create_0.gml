@@ -24,37 +24,30 @@ audio_master_gain(1);
 audio_play_sound(snd_bgm, 0, true);
 
 global.topic_names = [
-    "Planets",
-    "Animals",
-    "Technology"
+    "Networks",
+    "Energy Loss",
+    "Algorithms"
 ];
 
 // elements per topic
 global.topic_elements = [
-    // Topic 0: Planets
-    ["Jupiter", "Neptune", "Earth", "Mars"],
-
-    // Topic 1: Animals
-    ["Cheetah", "Horse", "Dog", "Elephant"],
-
-    // Topic 2: Technology
-    ["NVMe SSD", "SATA SSD", "USB Flash", "HDD"]
+    ["Ethernet", "Wi-Fi", "4G", "Satellite"],
+    ["Car Braking", "Sliding Book", "Rolling Ball", "Satellite Orbit"],
+    ["Binary Search", "Merge Sort", "Linear Search", "Bubble Sort"]
 ];
+
 
 global.topic_questions = [
-    "Rank the planets from largest to smallest.",
-    "Rank the animals from fastest to slowest.",
-    "Rank the storage types from fastest to slowest."
+    "Rank these connections by latency (lowest to highest).",
+    "Rank these by energy lost to friction (most to least).",
+    "Rank these algorithms by time complexity (fastest to slowest)."
 ];
+
 
 global.topic_extremes = [
-    // Topic 0: Planets
-    ["Largest", "Smallest"],
-
-    // Topic 1: Animals
-    ["Fastest", "Slowest"],
-
-    // Topic 2: Technology
+    ["Lowest Latency", "Highest Latency"],
+    ["Most Loss", "Least Loss"],
     ["Fastest", "Slowest"]
 ];
+
 
