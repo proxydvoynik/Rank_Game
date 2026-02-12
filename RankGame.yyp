@@ -24,7 +24,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.2.213",
+    "IDEVersion":"2024.14.3.217",
   },
   "name":"RankGame",
   "resources":[
@@ -51,10 +51,10 @@
     {"id":{"name":"snd_click","path":"sounds/snd_click/snd_click.yy",},},
     {"id":{"name":"spr_bg_home","path":"sprites/spr_bg_home/spr_bg_home.yy",},},
     {"id":{"name":"spr_button_primary","path":"sprites/spr_button_primary/spr_button_primary.yy",},},
+    {"id":{"name":"spr_element","path":"sprites/spr_element/spr_element.yy",},},
     {"id":{"name":"spr_game_bg","path":"sprites/spr_game_bg/spr_game_bg.yy",},},
     {"id":{"name":"spr_sound_off","path":"sprites/spr_sound_off/spr_sound_off.yy",},},
     {"id":{"name":"spr_sound_on","path":"sprites/spr_sound_on/spr_sound_on.yy",},},
-    {"id":{"name":"Sprite2","path":"sprites/Sprite2/Sprite2.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
