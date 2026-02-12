@@ -28,9 +28,9 @@
     {"name":"snd_bgm","order":1,"path":"sounds/snd_bgm/snd_bgm.yy",},
     {"name":"spr_bg_home","order":6,"path":"sprites/spr_bg_home/spr_bg_home.yy",},
     {"name":"spr_button_primary","order":3,"path":"sprites/spr_button_primary/spr_button_primary.yy",},
+    {"name":"spr_element","order":1,"path":"sprites/spr_element/spr_element.yy",},
     {"name":"spr_game_bg","order":7,"path":"sprites/spr_game_bg/spr_game_bg.yy",},
     {"name":"spr_sound_off","order":4,"path":"sprites/spr_sound_off/spr_sound_off.yy",},
     {"name":"spr_sound_on","order":2,"path":"sprites/spr_sound_on/spr_sound_on.yy",},
-    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
   ],
 }
